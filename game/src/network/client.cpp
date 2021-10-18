@@ -21,9 +21,8 @@ namespace game
             }
 
             const auto pos = core::ConvertFromBinary<core::Vec2f>(spawnPlayerPacket->pos);
-            const auto rotation = core::ConvertFromBinary<core::degree_t>(spawnPlayerPacket->angle);
 
-            gameManager_.SpawnPlayer(playerNumber, pos, rotation);
+            gameManager_.SpawnPlayer(playerNumber, pos);
             break;
         }
         case PacketType::START_GAME:

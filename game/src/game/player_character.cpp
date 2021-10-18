@@ -28,6 +28,7 @@ namespace game
 
 
             physicsManager_.SetBody(playerEntity, playerBody);
+            SetComponent(playerEntity, playerCharacter);
         }
     }
 }

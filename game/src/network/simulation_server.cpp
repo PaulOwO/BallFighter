@@ -110,6 +110,7 @@ namespace game
 
         const auto pos = spawnPositions[playerNumber] * 3.0f;
         spawnPlayer->pos = ConvertToBinary(pos);
+        gameManager_.SpawnPlayer(playerNumber, pos);
         SendReliablePacket(std::move(spawnPlayer));
     }
 }

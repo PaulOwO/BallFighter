@@ -210,8 +210,8 @@ namespace game
         const core::Entity playerEntity = gameManager_.GetEntityFromPlayerNumber(playerNumber);
         if (playerEntity == core::EntityManager::INVALID_ENTITY)
         {
-            core::LogDebug(fmt::format("invalid entity player number {}", playerNumber));
-            return 0;
+            core::LogDebug(fmt::format("invalid entity player number {} to get validate physics state", playerNumber));
+            return state; //return 0 
         }
         const auto& playerBody = lastValidatePhysicsManager_.GetBody(playerEntity);
 
@@ -233,7 +233,7 @@ namespace game
         return state;
     }
 
-    void RollbackManager::SpawnPlayer(PlayerNumber playerNumber, core::Entity entity, core::Vec2f position, core::degree_t rotation)
+    void RollbackManager::SpawnPlayer(PlayerNumber playerNumber, core::Entity entity, core::Vec2f position)
     {
         Body playerBody;
         playerBody.position = position;
@@ -261,7 +261,6 @@ namespace game
 
         currentTransformManager_.AddComponent(entity);
         currentTransformManager_.SetPosition(entity, position);
-        currentTransformManager_.SetRotation(entity, rotation);
     }
 
     PlayerInput RollbackManager::GetInputAtFrame(PlayerNumber playerNumber, Frame frame)

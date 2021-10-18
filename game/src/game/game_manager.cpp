@@ -16,7 +16,7 @@ namespace game
         playerEntityMap_.fill(core::EntityManager::INVALID_ENTITY);
     }
 
-    void GameManager::SpawnPlayer(PlayerNumber playerNumber, core::Vec2f position, core::degree_t rotation)
+    void GameManager::SpawnPlayer(PlayerNumber playerNumber, core::Vec2f position)
     {
         if (GetEntityFromPlayerNumber(playerNumber) != core::EntityManager::INVALID_ENTITY)
             return;
@@ -26,8 +26,7 @@ namespace game
 
         transformManager_.AddComponent(entity);
         transformManager_.SetPosition(entity, position);
-        transformManager_.SetRotation(entity, rotation);
-        rollbackManager_.SpawnPlayer(playerNumber, entity, position, core::degree_t(rotation));
+        rollbackManager_.SpawnPlayer(playerNumber, entity, position);
     }
 
     core::Entity GameManager::GetEntityFromPlayerNumber(PlayerNumber playerNumber) const
@@ -243,11 +242,11 @@ namespace game
         clientPlayer_ = clientPlayer;
     }
 
-    void ClientGameManager::SpawnPlayer(PlayerNumber playerNumber, core::Vec2f position, core::degree_t rotation)
+    void ClientGameManager::SpawnPlayer(PlayerNumber playerNumber, core::Vec2f position)
     {
         core::LogDebug(fmt::format("Spawn player: {}", playerNumber));
 
-        GameManager::SpawnPlayer(playerNumber, position, rotation);
+        GameManager::SpawnPlayer(playerNumber, position);
         const auto entity = GetEntityFromPlayerNumber(playerNumber);
         spriteManager_.AddComponent(entity);
         spriteManager_.SetTexture(entity, shipTexture_);

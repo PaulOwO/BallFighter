@@ -28,7 +28,7 @@ namespace game
     public:
         GameManager();
         virtual ~GameManager() = default;
-        virtual void SpawnPlayer(PlayerNumber playerNumber, core::Vec2f position, core::degree_t rotation);
+        virtual void SpawnPlayer(PlayerNumber playerNumber, core::Vec2f position);
         [[nodiscard]] core::Entity GetEntityFromPlayerNumber(PlayerNumber playerNumber) const;
         [[nodiscard]] Frame GetCurrentFrame() const { return currentFrame_; }
         [[nodiscard]] Frame GetLastValidateFrame() const { return rollbackManager_.GetLastValidateFrame(); }
@@ -71,7 +71,7 @@ namespace game
         [[nodiscard]] sf::Vector2u GetWindowSize() const { return windowSize_; }
         void Draw(sf::RenderTarget& target) override;
         void SetClientPlayer(PlayerNumber clientPlayer);
-        void SpawnPlayer(PlayerNumber playerNumber, core::Vec2f position, core::degree_t rotation) override;
+        void SpawnPlayer(PlayerNumber playerNumber, core::Vec2f position) override;
         void FixedUpdate();
         void SetPlayerInput(PlayerNumber playerNumber, std::uint8_t playerInput, std::uint32_t inputFrame) override;
         void DrawImGui() override;
