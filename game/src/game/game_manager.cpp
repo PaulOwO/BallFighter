@@ -150,7 +150,6 @@ namespace game
 
     void ClientGameManager::Draw(sf::RenderTarget& target)
     {
-        UpdateCameraView();
         target.setView(cameraView_);
 
 
@@ -249,7 +248,7 @@ namespace game
         GameManager::SpawnPlayer(playerNumber, position);
         const auto entity = GetEntityFromPlayerNumber(playerNumber);
         spriteManager_.AddComponent(entity);
-        spriteManager_.SetTexture(entity, shipTexture_);
+        spriteManager_.SetTexture(entity, shipTexture_);  //TODO ball sprite
         spriteManager_.SetOrigin(entity, sf::Vector2f(shipTexture_.getSize())/2.0f);
         auto sprite = spriteManager_.GetComponent(entity);
         sprite.setColor(playerColors[playerNumber]);
@@ -373,47 +372,6 @@ namespace game
         state_ = state_ | FINISHED;
     }
 
-    void ClientGameManager::UpdateCameraView()
-    {
-        if(!(state_ | STARTED))
-        {
-            cameraView_ = originalView_;
-            return;
-        }
-
-        cameraView_ = originalView_;
-        const sf::Vector2f extends{ cameraView_.getSize() / 2.0f / PixelPerUnit };
-        float currentZoom = 1.0f;
-        constexpr float margin = 1.0f;
-        for (PlayerNumber playerNumber = 0; playerNumber < maxPlayerNmb; playerNumber++)
-        {
-            const auto playerEntity = GetEntityFromPlayerNumber(playerNumber);
-            if(playerEntity == core::EntityManager::INVALID_ENTITY)
-            {
-                continue;
-            }
-            if(entityManager_.HasComponent(playerEntity, static_cast<core::EntityMask>(core::ComponentType::POSITION)))
-            {
-                const auto position = transformManager_.GetPosition(playerEntity);
-                if((std::abs(position.x) + margin) > extends.x)
-                {
-                    const auto ratio = (std::abs(position.x ) + margin) / extends.x;
-                    if(ratio > currentZoom)
-                    {
-                        currentZoom = ratio;
-                    }
-                }
-                if ((std::abs(position.y) + margin) > extends.y)
-                {
-                    const auto ratio = (std::abs(position.y) + margin) / extends.y;
-                    if (ratio > currentZoom)
-                    {
-                        currentZoom = ratio;
-                    }
-                }
-            }
-        }
-        cameraView_.zoom(currentZoom);
-
-    }
+   //camera 
+    
 }

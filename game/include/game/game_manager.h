@@ -81,8 +81,6 @@ namespace game
         [[nodiscard]] std::uint32_t GetState() const { return state_; }
     protected:
 
-        void UpdateCameraView();
-
         PacketSenderInterface& packetSenderInterface_;
         sf::Vector2u windowSize_;
         sf::View originalView_;
