@@ -20,8 +20,6 @@ namespace game
     {
         core::Vec2f position = core::Vec2f::zero();
         core::Vec2f velocity = core::Vec2f::zero();
-        core::degree_t angularVelocity = core::degree_t(0.0f);
-        core::degree_t rotation = core::degree_t(0.0f);
         BodyType bodyType = BodyType::DYNAMIC;
     };
 

@@ -25,7 +25,6 @@ namespace game
                 continue;
             auto body = bodyManager_.GetComponent(entity);
             body.position += body.velocity * dt.asSeconds();
-            body.rotation += body.angularVelocity * dt.asSeconds();
             bodyManager_.SetComponent(entity, body);
         }
         for (core::Entity entity = 0; entity < entityManager_.GetEntitiesSize(); entity++)
