@@ -9,11 +9,9 @@ namespace game
 
     struct PlayerCharacter
     {
-        float shootingTime = 0.0f;
         PlayerInput input = 0u;
         PlayerNumber playerNumber = INVALID_PLAYER;
         short health = playerHealth;
-        float invincibilityTime = 0.0f;
     };
     class GameManager;
     class PlayerCharacterManager : public core::ComponentManager<PlayerCharacter, core::EntityMask(ComponentType::PLAYER_CHARACTER)>

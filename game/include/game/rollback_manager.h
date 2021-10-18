@@ -19,14 +19,7 @@ class GameManager;
         Frame createdFrame = 0;
     };
 
-    struct DestroyedBullet
-    {
-        Bullet bullet;
-        Body body;
-        Frame destroyedFrame = 0;
-    };
-
-    class RollbackManager : public OnTriggerInterface
+    class RollbackManager 
     {
     public:
         explicit RollbackManager(GameManager& gameManager, core::EntityManager& entityManager);
@@ -49,15 +42,12 @@ class GameManager;
         [[nodiscard]] Frame GetLastReceivedFrame(PlayerNumber playerNumber) const { return lastReceivedFrame_[playerNumber]; }
         [[nodiscard]] Frame GetCurrentFrame() const { return currentFrame_; }
         [[nodiscard]] const core::TransformManager& GetTransformManager() const { return currentTransformManager_; }
-        [[nodiscard]] const PlayerCharacterManager& GetPlayerCharacterManager() const { return currentPlayerManager_; }
+    	[[nodiscard]] const PlayerCharacterManager& GetPlayerCharacterManager() const { return currentPlayerManager_; }
         void SpawnPlayer(PlayerNumber playerNumber, core::Entity entity, core::Vec2f position, core::degree_t rotation);
-        void SpawnBullet(PlayerNumber playerNumber, core::Entity entity, core::Vec2f position, core::Vec2f velocity);
         /**
          * \brief This function does not destroy the entity definitely, but puts the DESTROY flag
          */
         void DestroyEntity(core::Entity entity);
-
-        void OnTrigger(core::Entity entity1, core::Entity entity2) override;
     private:
         PlayerInput GetInputAtFrame(PlayerNumber playerNumber, Frame frame);
         GameManager& gameManager_;
@@ -68,13 +58,11 @@ class GameManager;
         core::TransformManager currentTransformManager_;
         PhysicsManager currentPhysicsManager_;
         PlayerCharacterManager currentPlayerManager_;
-        BulletManager currentBulletManager_;
         /**
          * Last Validate (confirm frame) Component Managers used for rollback
          */
         PhysicsManager lastValidatePhysicsManager_;
         PlayerCharacterManager lastValidatePlayerManager_;
-        BulletManager lastValidateBulletManager_;
 
 
         Frame lastValidateFrame_ = 0; //Confirm frame
@@ -94,6 +82,5 @@ class GameManager;
         {
             return inputs_[playerNumber];
         }
-
     };
 }

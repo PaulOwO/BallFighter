@@ -4,6 +4,7 @@
 #include "packet_type.h"
 #include "engine/system.h"
 #include "game/game_globals.h"
+#include <game/game_manager.h>
 
 namespace game
 {

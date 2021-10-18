@@ -101,7 +101,6 @@ namespace game
             gameManager_.WinGame(winGamePacket->winner);
             break;
         }
-        case PacketType::SPAWN_BULLET: break;
         default:;
         }
 
