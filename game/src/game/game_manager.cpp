@@ -89,7 +89,7 @@ namespace game
         //load textures
         if (!playerTexture_.loadFromFile("data/sprites/player.png"))
         {
-            core::LogError("Could not load ship sprite");
+            core::LogError("Could not load player sprite");
         }
         //load fonts
         if (!font_.loadFromFile("data/fonts/8-bit-hud.ttf"))

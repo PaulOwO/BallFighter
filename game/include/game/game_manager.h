@@ -8,7 +8,6 @@
 
 #include "game_globals.h"
 #include "rollback_manager.h"
-#include "star_background.h"
 #include "engine/entity.h"
 #include "graphics/graphics.h"
 #include "graphics/sprite.h"
