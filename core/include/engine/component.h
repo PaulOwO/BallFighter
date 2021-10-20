@@ -17,7 +17,8 @@ namespace core
         SPRITE = 1u << 4u,
         BODY2D = 1u << 5u,
         BOX_COLLIDER2D = 1u << 6u,
-        OTHER_TYPE = 1u << 7u
+        OTHER_TYPE = 1u << 7u,
+        RADIUS = 1u << 8u
     };
 
     template<typename T, Component C>

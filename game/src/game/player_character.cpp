@@ -25,7 +25,7 @@ namespace game
 
             const bool right = input & PlayerInputEnum::PlayerInput::RIGHT;
             const bool left = input & PlayerInputEnum::PlayerInput::LEFT;
-
+            const bool jump = input & PlayerInputEnum::PlayerInput::JUMP;
 
             physicsManager_.SetBody(playerEntity, playerBody);
             SetComponent(playerEntity, playerCharacter);

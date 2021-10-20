@@ -87,7 +87,7 @@ namespace game
     void ClientGameManager::Init()
     {
         //load textures
-        if (!shipTexture_.loadFromFile("data/sprites/ship.png"))
+        if (!playerTexture_.loadFromFile("data/sprites/player.png"))
         {
             core::LogError("Could not load ship sprite");
         }
@@ -150,6 +150,7 @@ namespace game
 
     void ClientGameManager::Draw(sf::RenderTarget& target)
     {
+        void UpdateCameraView();
         target.setView(cameraView_);
 
 
@@ -248,8 +249,8 @@ namespace game
         GameManager::SpawnPlayer(playerNumber, position);
         const auto entity = GetEntityFromPlayerNumber(playerNumber);
         spriteManager_.AddComponent(entity);
-        spriteManager_.SetTexture(entity, shipTexture_);  //TODO ball sprite
-        spriteManager_.SetOrigin(entity, sf::Vector2f(shipTexture_.getSize())/2.0f);
+        spriteManager_.SetTexture(entity, playerTexture_);  //TODO ball sprite
+        spriteManager_.SetOrigin(entity, sf::Vector2f(playerTexture_.getSize())/2.0f);
         auto sprite = spriteManager_.GetComponent(entity);
         sprite.setColor(playerColors[playerNumber]);
         spriteManager_.SetComponent(entity, sprite);
@@ -373,5 +374,14 @@ namespace game
     }
 
    //camera 
-    
+    void ClientGameManager::UpdateCameraView()
+    {
+        if (!(state_ | STARTED))
+        {
+            cameraView_ = originalView_;
+            return;
+        }
+        cameraView_ = originalView_;
+        const sf::Vector2f extends{ cameraView_.getSize() / 2.0f / PixelPerUnit };
+    }
 }

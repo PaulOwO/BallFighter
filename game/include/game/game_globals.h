@@ -10,13 +10,11 @@
 
 namespace game
 {
-
     using PlayerNumber = std::uint8_t;
     const PlayerNumber INVALID_PLAYER = std::numeric_limits<PlayerNumber>::max();
     using ClientId = std::uint16_t;
     using Frame = std::uint32_t;
 
-	// ms?
     const std::uint32_t maxPlayerNmb = 2;
     const short playerHealth = 5;
     const float playerSpeed = 1.0f;
@@ -55,7 +53,7 @@ namespace game
             NONE = 0u,
             LEFT = 1u << 2u,
             RIGHT = 1u << 3u,
-            //Jump
+            JUMP = 1u << 4u,
         };
     }
 }
