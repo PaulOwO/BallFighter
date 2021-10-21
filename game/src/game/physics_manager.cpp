@@ -1,4 +1,8 @@
 #include <game/physics_manager.h>
+#include <fmt/format.h>
+#include <utils/log.h>
+
+
 
 namespace game
 {
@@ -34,11 +38,14 @@ namespace game
                 body.velocity.x = 10;
             if (body.position.y <= 0)
                 body.velocity.y = 5;
-            if (body.position.x >= dx)
+            if (body.position.x >= core::windowSize.x)
                 body.velocity.x = -10;
-            if (body.position.y >= dy)
+            if (body.position.y >= core::windowSize.y)
                 body.velocity.y = -body.velocity.y / 2;
             body.position += body.velocity * dt.asSeconds();
+
+            if (entity == 1)
+           core::LogWarning(fmt::format("player{} position x :{} y :{}, ",entity,body.position.x, body.position.y));   //stdcout position
 
             bodyManager_.SetComponent(entity, body);
         }

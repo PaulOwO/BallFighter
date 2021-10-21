@@ -31,8 +31,8 @@ namespace game
 
     constexpr std::array<core::Vec2f, std::max(4u, maxPlayerNmb)> spawnPositions
     {
-            core::Vec2f(0,1),
-            core::Vec2f(0,-1),
+            core::Vec2f(-1,-1), 
+            core::Vec2f(1,-1),
             core::Vec2f(1,0),
             core::Vec2f(-1,0),
     };

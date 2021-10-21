@@ -48,7 +48,7 @@ void Engine::Init()
 {
     window_ = std::make_unique<sf::RenderWindow>(sf::VideoMode(windowSize.x, windowSize.y), "Rollback Game");
     ImGui::SFML::Init(*window_);
-    for(auto& system : systems_)
+    for(auto& system : systems_)                                                                                     //TODO make widow size changable
     {
         system->Init();
     }
@@ -68,7 +68,7 @@ void Engine::Update(sf::Time dt)
         case sf::Event::Resized:
         {
             sf::FloatRect visibleArea(0, 0, e.size.width, e.size.height);
-            window_->setView(sf::View(visibleArea));
+            window_->setView(sf::View(visibleArea));                                            //TODO
             break;
         }
         default:
