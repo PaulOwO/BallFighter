@@ -24,7 +24,22 @@ namespace game
             if (!entityManager_.HasComponent(entity, static_cast<core::EntityMask>(core::ComponentType::BODY2D)))
                 continue;
             auto body = bodyManager_.GetComponent(entity);
+            auto previous_position= core::Vec2f::zero();
+            previous_position = body.position;
+            auto G = core::Vec2f::zero();
+            G = { 0, -9.81 };
+            //body.position += 0.5 * G * dt.asSeconds() * dt.asSeconds() + body.velocity * dt.asSeconds() + body.position;
+        	//body.velocity += (body.position - previous_position) * 1.0f / dt.asSeconds();
+            if (body.position.x <= 0)
+                body.velocity.x = 10;
+            if (body.position.y <= 0)
+                body.velocity.y = 5;
+            if (body.position.x >= dx)
+                body.velocity.x = -10;
+            if (body.position.y >= dy)
+                body.velocity.y = -body.velocity.y / 2;
             body.position += body.velocity * dt.asSeconds();
+
             bodyManager_.SetComponent(entity, body);
         }
         for (core::Entity entity = 0; entity < entityManager_.GetEntitiesSize(); entity++)

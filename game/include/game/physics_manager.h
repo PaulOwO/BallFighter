@@ -67,6 +67,10 @@ namespace game
         BodyManager bodyManager_;
         BoxManager boxManager_;
         core::Action<core::Entity, core::Entity> onTriggerAction_;
+
+    protected:
+        int dx = 1280;
+        int dy = 720;
     };
 
 }

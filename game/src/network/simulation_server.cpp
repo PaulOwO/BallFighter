@@ -108,7 +108,7 @@ namespace game
         spawnPlayer->clientId = core::ConvertToBinary(clientId);
         spawnPlayer->playerNumber = playerNumber;
 
-        const auto pos = spawnPositions[playerNumber] * 3.0f;
+        const auto pos = spawnPositions[0] * playerNumber;
         spawnPlayer->pos = ConvertToBinary(pos);
         gameManager_.SpawnPlayer(playerNumber, pos);
         SendReliablePacket(std::move(spawnPlayer));

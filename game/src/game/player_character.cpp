@@ -27,6 +27,13 @@ namespace game
             const bool left = input & PlayerInputEnum::PlayerInput::LEFT;
             const bool jump = input & PlayerInputEnum::PlayerInput::JUMP;
 
+            auto dir = core::Vec2f::up();
+            auto dir_r = core::Vec2f::right();
+
+            const auto acceleration =  (jump ? 0.1f : 0.0f) * dir;
+            const auto acceleration_r = ((right ? 0.0f : -2.5f) + (left ? 0.0f : 2.5f)) * dir_r;
+            playerBody.velocity += acceleration + acceleration_r * dt.asSeconds();
+
             physicsManager_.SetBody(playerEntity, playerBody);
             SetComponent(playerEntity, playerCharacter);
         }
