@@ -382,6 +382,6 @@ namespace game
             return;
         }
         cameraView_ = originalView_;
-        const sf::Vector2f extends{ cameraView_.getSize() / 2.0f / PixelPerUnit };
+        //const sf::Vector2f extends{ cameraView_.getSize() / 2.0f / PixelPerUnit };
     }
 }

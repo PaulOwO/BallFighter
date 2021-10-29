@@ -28,21 +28,35 @@ namespace game
             if (!entityManager_.HasComponent(entity, static_cast<core::EntityMask>(core::ComponentType::BODY2D)))
                 continue;
             auto body = bodyManager_.GetComponent(entity);
-            auto previous_position= core::Vec2f::zero();
-            previous_position = body.position;
-            auto G = core::Vec2f::zero();
-            G = { 0, -9.81 };
-            //body.position += 0.5 * G * dt.asSeconds() * dt.asSeconds() + body.velocity * dt.asSeconds() + body.position;
-        	//body.velocity += (body.position - previous_position) * 1.0f / dt.asSeconds();
-            if (body.position.x <= 0)
-                body.velocity.x = 10;
-            if (body.position.y <= 0)
-                body.velocity.y = 5;
-            if (body.position.x >= core::windowSize.x)
-                body.velocity.x = -10;
-            if (body.position.y >= core::windowSize.y)
-                body.velocity.y = -body.velocity.y / 2;
+            core::Vec2f G = { 0, -9.81 };
+            core::Vec2f max_pos = { (core::windowSize.x / core::pixelPerMeter /2), (core::windowSize.y / core::pixelPerMeter / 2)};
+            //core::Vec2f min_pos = core::Vec2f::zero();
+            core::Vec2f min_pos = { -(core::windowSize.x / core::pixelPerMeter / 2), -(core::windowSize.y / core::pixelPerMeter / 2)};
+
+            body.velocity += G * dt.asSeconds();
             body.position += body.velocity * dt.asSeconds();
+
+            if (body.position.x <= min_pos.x)
+            {
+                body.position.x = min_pos.x;
+                body.velocity.x = 5;
+            }
+            if (body.position.y <= min_pos.y)            //correct position and velocity
+            {
+                body.position.y = min_pos.y;
+                body.velocity.y = - body.velocity.y /2;
+            }
+            if (body.position.x >= max_pos.x)
+            {
+                body.position.x = max_pos.x;
+                body.velocity.x = -5;
+            }
+            if (body.position.y >= max_pos.y)
+            {
+                body.position.y = max_pos.y;
+                body.velocity.y = -10;
+            }
+                
 
             if (entity == 1)
            core::LogWarning(fmt::format("player{} position x :{} y :{}, ",entity,body.position.x, body.position.y));   //stdcout position
@@ -70,7 +84,7 @@ namespace game
                 const Body& body2 = bodyManager_.GetComponent(otherEntity);
                 const Box& box2 = boxManager_.GetComponent(otherEntity);
 
-                if (Box2Box(
+               /* if (Box2Box(
                     body1.position.x - box1.extends.x,
                     body1.position.y - box1.extends.y,
                     box1.extends.x * 2.0f,
@@ -81,7 +95,7 @@ namespace game
                     box2.extends.y * 2.0f))
                 {
                     onTriggerAction_.Execute(entity, otherEntity);
-                }
+                }*/
 
             }
         }

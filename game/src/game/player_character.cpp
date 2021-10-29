@@ -29,10 +29,21 @@ namespace game
 
             auto dir = core::Vec2f::up();
             auto dir_r = core::Vec2f::right();
-
-            const auto acceleration =  (jump ? 0.1f : 0.0f) * dir;
-            const auto acceleration_r = ((right ? 0.0f : -2.5f) + (left ? 0.0f : 2.5f)) * dir_r;
-            playerBody.velocity += acceleration + acceleration_r * dt.asSeconds();
+            if (jump)
+            {
+                playerBody.velocity = { playerBody.velocity.x ,0 };
+            }
+            const auto acceleration =  (jump ? 5.0f : 0.0f) * dir;
+            const auto jump_acceleration = ((right ? 0.0f : -3.5f) + (left ? 0.0f : 3.5f)) * dir_r;
+            playerBody.velocity += acceleration + jump_acceleration * dt.asSeconds();
+            if (playerBody.velocity.x <= -2)
+            {
+                playerBody.velocity.x = -2;
+            }
+            if (playerBody.velocity.x >= 2)
+            {
+                playerBody.velocity.x = 2;
+            }
 
             physicsManager_.SetBody(playerEntity, playerBody);
             SetComponent(playerEntity, playerCharacter);
