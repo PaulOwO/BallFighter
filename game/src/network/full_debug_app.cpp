@@ -66,7 +66,7 @@ namespace game
         PlayerInput clientInput2 = 0;
         clientInput2 = clientInput2 | (sf::Keyboard::isKeyPressed(sf::Keyboard::A) ? PlayerInputEnum::PlayerInput::LEFT : 0u);
         clientInput2 = clientInput2 | (sf::Keyboard::isKeyPressed(sf::Keyboard::D) ? PlayerInputEnum::PlayerInput::RIGHT : 0u);
-        clientInput1 = clientInput1 | (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) ? PlayerInputEnum::PlayerInput::JUMP : 0u);
+        clientInput2 = clientInput2 | (sf::Keyboard::isKeyPressed(sf::Keyboard::W) ? PlayerInputEnum::PlayerInput::JUMP : 0u);
        
         clients_[1]->SetPlayerInput(clientInput2);
         

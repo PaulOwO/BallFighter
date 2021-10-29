@@ -39,7 +39,7 @@ namespace game
             if (body.position.x <= min_pos.x)
             {
                 body.position.x = min_pos.x;
-                body.velocity.x = 5;
+                body.velocity.x = 15;
             }
             if (body.position.y <= min_pos.y)            //correct position and velocity
             {
@@ -49,7 +49,7 @@ namespace game
             if (body.position.x >= max_pos.x)
             {
                 body.position.x = max_pos.x;
-                body.velocity.x = -5;
+                body.velocity.x = -15;
             }
             if (body.position.y >= max_pos.y)
             {

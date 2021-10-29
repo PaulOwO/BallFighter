@@ -150,7 +150,7 @@ namespace game
 
     void ClientGameManager::Draw(sf::RenderTarget& target)
     {
-        void UpdateCameraView();
+    	UpdateCameraView();
         target.setView(cameraView_);
 
 
@@ -382,6 +382,5 @@ namespace game
             return;
         }
         cameraView_ = originalView_;
-        //const sf::Vector2f extends{ cameraView_.getSize() / 2.0f / PixelPerUnit };
     }
 }
