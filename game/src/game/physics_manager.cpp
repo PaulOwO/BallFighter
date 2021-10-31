@@ -178,15 +178,15 @@ namespace game
         body2.velocity.y = ComputeNormal(body2.position, ContactPoint(body1, body2)).y * v1n + ComputeTangent(
             body2.position, ContactPoint(body1, body2)).y * v2t * -core::forceRestitution;
 
-            if(body2.position.y >= body1.position.y + 1.5 * core::radius)
-            {
-                core::LogWarning(fmt::format("p2 death!"));
-                entityManager_.DestroyEntity(0);
-            }
+			if (body2.position.y >= body1.position.y + 1.5 * core::radius)
+			{
+				core::LogWarning(fmt::format("p2 death!"));
+                //const auto& playerManager = rollbackManager_.GetPlayerCharacterManager();
+
+			}
             if (body1.position.y >= body2.position.y + 1.5 * core::radius)
             {
                 core::LogWarning(fmt::format("p1 death!"));
-                entityManager_.DestroyEntity(1);
             }
 
         body1.position = RelocateCenter(body1, ContactPoint(body1, body2));

@@ -16,7 +16,7 @@ namespace game
     using Frame = std::uint32_t;
 
     const std::uint32_t maxPlayerNmb = 2;
-    const short playerHealth = 5;
+    const short playerHealth = 1;
     const float playerSpeed = 1.0f;
 
     const std::array<sf::Color, std::max(maxPlayerNmb, 4u)> playerColors =
