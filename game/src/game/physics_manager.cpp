@@ -68,10 +68,8 @@ namespace game
             if (BodyIntersect(body1, body2))
             {
                 core::LogWarning(fmt::format("Contact!"));
+                ResolveBodyIntersect(body1, body2);
             }
-
-
-
 
             bodyManager_.SetComponent(entity, body);
         }
@@ -158,6 +156,46 @@ namespace game
     bool PhysicsManager::BodyIntersect(Body body1, Body body2)
     {
         return Body::CalculateDistance(body1, body2) < (core::radius + core::radius );
+    }
+
+    void PhysicsManager::ResolveBodyIntersect(Body& body1, Body& body2)
+    {
+        float v1n = ComputeNormal(body1.position, ContactPoint(body1, body2)).x * body1.velocity.x +
+            ComputeNormal(body1.position, ContactPoint(body1, body2)).y * body1.velocity.y;
+        float v1t = ComputeTangent(body1.position, ContactPoint(body1, body2)).x * body1.velocity.x +
+            ComputeTangent(body1.position, ContactPoint(body1, body2)).y * body1.velocity.y;
+        float v2n = ComputeNormal(body2.position, ContactPoint(body1, body2)).x * body2.velocity.x +
+            ComputeNormal(body2.position, ContactPoint(body1, body2)).y * body2.velocity.y;
+        float v2t = ComputeTangent(body2.position, ContactPoint(body1, body2)).x * body2.velocity.x +
+            ComputeTangent(body2.position, ContactPoint(body1, body2)).y * body2.velocity.y;
+
+        body1.velocity.x = ComputeNormal(body1.position, ContactPoint(body1, body2)).x * v2n + ComputeTangent(
+            body1.position, ContactPoint(body1, body2)).x * -v1t;
+        body1.velocity.y = ComputeNormal(body1.position, ContactPoint(body1, body2)).y * v2n + ComputeTangent(
+            body1.position, ContactPoint(body1, body2)).y * -v1t;
+        body2.velocity.x = ComputeNormal(body2.position, ContactPoint(body1, body2)).x * v1n + ComputeTangent(
+            body2.position, ContactPoint(body1, body2)).x * -v2t;
+        body2.velocity.y = ComputeNormal(body2.position, ContactPoint(body1, body2)).y * v1n + ComputeTangent(
+            body2.position, ContactPoint(body1, body2)).y * -v2t;
+
+            /*if (rb1.center.y == rb2.center.y + rb1.radius + rb2.radius)
+            {
+                std::cout << "delete rb1";
+            }*/
+        body1.position = RelocateCenter(body1, ContactPoint(body1, body2));
+        body2.position = RelocateCenter(body2, ContactPoint(body1, body2));
+    }
+
+    core::Vec2f PhysicsManager::ContactPoint(const Body& body1, const Body& body2) const
+    {
+        double ratio = (core::radius / 100) / ((core::radius / 100) + (core::radius / 100));
+        return (body2.position - body1.position) * ratio + body1.position;
+    }
+
+    core::Vec2f PhysicsManager::RelocateCenter(const Body& body, const core::Vec2f& v)
+    {
+        double ratio = (core::radius / 100.0f) / (body.position - v).Length();
+        return (body.position - v) * ratio + v;
     }
 
 

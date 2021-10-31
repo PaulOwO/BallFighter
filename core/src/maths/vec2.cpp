@@ -46,33 +46,54 @@ namespace core
         return {x / f, y / f};
     }
 
+    Vec2f Vec2f::Normalize() const
+    {
+        return (*this / Length());
+    }
+
+    float Vec2f::Length() const
+    {
+        { return std::sqrt(x * x + y * y); }
+    }
+
     Vec2f operator*(float f, Vec2f v)
     {
         return v*f;
     }
 
-    float Vec2f::GetMagnitude() const
-{
-    return std::sqrt(GetSqrMagnitude());
-}
+    Vec2f ComputeNormal(Vec2f center, Vec2f i)
+    {
+        return(i - center).Normalize();
+    }
 
-void Vec2f::Normalize()
-{
-    const auto magnitude = GetMagnitude();
-    x /= magnitude;
-    y /= magnitude;
-}
+    Vec2f ComputeTangent(Vec2f center, Vec2f i)
+    {
+        const Vec2f tangent = ComputeNormal(center, i);
+        return { tangent.y, -tangent.x };
+    }
 
-Vec2f Vec2f::GetNormalized() const
-{
-    const auto magnitude = GetMagnitude();
-    return (*this) / magnitude;
-}
-
-float Vec2f::GetSqrMagnitude() const
-{
-    return x * x + y * y;
-}
+//    float Vec2f::GetMagnitude() const
+//{
+//    return std::sqrt(GetSqrMagnitude());
+//}
+//
+//void Vec2f::Normalize()
+//{
+//    const auto magnitude = GetMagnitude();
+//    x /= magnitude;
+//    y /= magnitude;
+//}
+//
+//Vec2f Vec2f::GetNormalized() const
+//{
+//    const auto magnitude = GetMagnitude();
+//    return (*this) / magnitude;
+//}
+//
+//float Vec2f::GetSqrMagnitude() const
+//{
+//    return x * x + y * y;
+//}
 
 Vec2f Vec2f::Rotate(degree_t rotation) const
 {

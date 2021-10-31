@@ -68,6 +68,8 @@ namespace game
         BoxManager boxManager_;
         core::Action<core::Entity, core::Entity> onTriggerAction_;
         bool BodyIntersect(Body body1, Body body2);
-
+        void ResolveBodyIntersect(Body& body1, Body& body2);
+        core::Vec2f ContactPoint(const Body& rb1, const Body& rb2) const;
+        core::Vec2f RelocateCenter(const Body& body, const core::Vec2f& v);
     };
 }
