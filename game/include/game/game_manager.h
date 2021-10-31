@@ -93,6 +93,7 @@ namespace game
         std::uint32_t state_ = 0;
 
         sf::Texture playerTexture_;
+        
         sf::Font font_;
 
         sf::Text textRenderer_;

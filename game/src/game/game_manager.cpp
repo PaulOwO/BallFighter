@@ -249,7 +249,7 @@ namespace game
         GameManager::SpawnPlayer(playerNumber, position);
         const auto entity = GetEntityFromPlayerNumber(playerNumber);
         spriteManager_.AddComponent(entity);
-        spriteManager_.SetTexture(entity, playerTexture_);  //TODO ball sprite
+        spriteManager_.SetTexture(entity, playerTexture_);
         spriteManager_.SetOrigin(entity, sf::Vector2f(playerTexture_.getSize())/2.0f);
         auto sprite = spriteManager_.GetComponent(entity);
         sprite.setColor(playerColors[playerNumber]);
