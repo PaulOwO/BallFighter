@@ -4,7 +4,6 @@
 #include "engine/entity.h"
 #include "maths/angle.h"
 #include "maths/vec2.h"
-
 #include <SFML/System/Time.hpp>
 
 #include "utils/action_utility.h"
@@ -21,6 +20,7 @@ namespace game
         core::Vec2f position = core::Vec2f::zero();
         core::Vec2f velocity = core::Vec2f::zero();
         BodyType bodyType = BodyType::DYNAMIC;
+        static float CalculateDistance(Body body1, Body body2);
     };
 
     struct Box
@@ -67,6 +67,7 @@ namespace game
         BodyManager bodyManager_;
         BoxManager boxManager_;
         core::Action<core::Entity, core::Entity> onTriggerAction_;
-    };
+        bool BodyIntersect(Body body1, Body body2);
 
+    };
 }

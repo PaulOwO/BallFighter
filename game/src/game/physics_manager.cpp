@@ -1,6 +1,7 @@
 #include <game/physics_manager.h>
 #include <fmt/format.h>
 #include <utils/log.h>
+#include <cmath>
 
 
 
@@ -36,30 +37,41 @@ namespace game
             body.velocity += G * dt.asSeconds();
             body.position += body.velocity * dt.asSeconds();
 
-            if (body.position.x <= min_pos.x)
+            if (body.position.x <= min_pos.x + core::radius)
             {
-                body.position.x = min_pos.x;
+                body.position.x = min_pos.x + core::radius;
                 body.velocity.x = 15;
             }
-            if (body.position.y <= min_pos.y)            //correct position and velocity
+            if (body.position.y <= min_pos.y + core::radius)            //correct position and velocity
             {
-                body.position.y = min_pos.y;
+                body.position.y = min_pos.y + core::radius;
                 body.velocity.y = - body.velocity.y /2;
             }
-            if (body.position.x >= max_pos.x)
+            if (body.position.x >= max_pos.x - core::radius)
             {
-                body.position.x = max_pos.x;
+                body.position.x = max_pos.x - core::radius;
                 body.velocity.x = -15;
             }
-            if (body.position.y >= max_pos.y)
+            if (body.position.y >= max_pos.y - core::radius)
             {
-                body.position.y = max_pos.y;
+                body.position.y = max_pos.y - core::radius;
                 body.velocity.y = -10;
             }
                 
 
-            if (entity == 1)
-           core::LogWarning(fmt::format("player{} position x :{} y :{}, ",entity,body.position.x, body.position.y));   //stdcout position
+           // if (entity == 0)
+           //core::LogWarning(fmt::format("player{} position x :{} y :{}, ",entity,body.position.x, body.position.y));   //stdcout position
+
+            auto body1 = bodyManager_.GetComponent(0);
+            auto body2 = bodyManager_.GetComponent(1);
+
+            if (BodyIntersect(body1, body2))
+            {
+                core::LogWarning(fmt::format("Contact!"));
+            }
+
+
+
 
             bodyManager_.SetComponent(entity, body);
         }
@@ -141,5 +153,18 @@ namespace game
     {
         bodyManager_.CopyAllComponents(physicsManager.bodyManager_.GetAllComponents());
         boxManager_.CopyAllComponents(physicsManager.boxManager_.GetAllComponents());
+    }
+
+    bool PhysicsManager::BodyIntersect(Body body1, Body body2)
+    {
+        return Body::CalculateDistance(body1, body2) < (core::radius + core::radius );
+    }
+
+
+    float Body::CalculateDistance(Body body1, Body body2)
+    {
+        const float dx = body2.position.x - body1.position.x;
+        const float dy = body2.position.y - body1.position.y;
+        return std::sqrt(dx * dx + dy * dy);
     }
 }
