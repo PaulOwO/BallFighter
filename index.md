@@ -20,7 +20,10 @@ Like I said before we started with a huge codebase, this codebase was a sort of 
 The firts step was to understand this code and plan what I was going to do during the next 3 weeks to advance at a regular pace.
 It was the first time that we did that so I learned a lot about how to spend time planning to acually save time programming. Going step by step was also neascesary not to get lost. 
 The first step of my plan was to delete all that i didn't need in the code like bullet and shooting for exemple, this step took way longer that I thought it would because of the fact that everyting in the code was linked. 
-My next step was 
+My next step was making the game physical engine and player movement, we had already done a physical engine in the last formative last year but it wasn't that easy because I I had to implement it using the already existing code so that the roolback would still work. The client-server relation being already there all we had to do is understand it and being able to use it like we wanted, for the player movement. I forgot my second law of Newton and didn't get my gravity right until some help. I also had a lot of trouble for the view of my game, between the meter, pixels, resize and split screen.
+The teacher being away for some time made us also predict where we were going to need help and made us do the best of limited help time.
+I finished the collision without to much trouble and was left was the win condition.
+When coding was over I checed and deleted things I didn't use and tried to clean up my code.
 
 
 You can use the [editor on GitHub](https://github.com/PaulOwO/BallFighter/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
