@@ -13,10 +13,9 @@ namespace core
         POSITION = 1u << 1u,
         SCALE = 1u << 2u,
         ROTATION = 1u << 3u,
-        TRANSFORM = POSITION | SCALE | ROTATION,
+        TRANSFORM = POSITION | SCALE,
         SPRITE = 1u << 4u,
-        BODY2D = 1u << 5u, //TODO renommer circle
-        BOX_COLLIDER2D = 1u << 6u, //TODO a enlever
+        BODY2D = 1u << 5u,
         OTHER_TYPE = 1u << 7u,
     };
 

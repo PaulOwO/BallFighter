@@ -250,16 +250,12 @@ namespace game
 
         currentPhysicsManager_.AddBody(entity);
         currentPhysicsManager_.SetBody(entity, playerBody);
-        currentPhysicsManager_.AddBox(entity);
-        currentPhysicsManager_.SetBox(entity, playerBox);
 
         lastValidatePlayerManager_.AddComponent(entity);
         lastValidatePlayerManager_.SetComponent(entity, playerCharacter);
 
         lastValidatePhysicsManager_.AddBody(entity);
         lastValidatePhysicsManager_.SetBody(entity, playerBody);
-        lastValidatePhysicsManager_.AddBox(entity);
-        lastValidatePhysicsManager_.SetBox(entity, playerBox);
 
         currentTransformManager_.AddComponent(entity);
         currentTransformManager_.SetPosition(entity, position);

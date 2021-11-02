@@ -44,11 +44,6 @@ namespace game
     public:
         using ComponentManager::ComponentManager;
     };
-    class BoxManager : public core::ComponentManager<Box, static_cast<core::EntityMask>(core::ComponentType::BOX_COLLIDER2D)>
-    {
-    public:
-        using ComponentManager::ComponentManager;
-    };
 
     class PhysicsManager
     {
@@ -59,8 +54,6 @@ namespace game
         void SetBody(core::Entity entity, const Body& body);
         void AddBody(core::Entity entity);
 
-        void AddBox(core::Entity entity);
-        void SetBox(core::Entity entity, const Box& box);
         [[nodiscard]] const Box& GetBox(core::Entity entity) const;
 
         void RegisterTriggerListener(OnTriggerInterface& collisionInterface);
@@ -68,7 +61,6 @@ namespace game
     private:
         core::EntityManager& entityManager_;
         BodyManager bodyManager_;
-        BoxManager boxManager_;
         core::Action<core::Entity, core::Entity> onTriggerAction_;
         bool BodyIntersect(Body body1, Body body2);
         void ResolveBodyIntersect(Body& body1, Body& body2);

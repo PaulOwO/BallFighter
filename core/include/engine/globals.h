@@ -9,4 +9,5 @@ namespace core
     constexpr float pixelPerMeter = 100.0f;
     constexpr float radius = 0.33f;
     constexpr float forceRestitution = 0.9f;
+    constexpr float roofPush = -10;
 } // namespace core
