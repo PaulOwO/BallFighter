@@ -19,34 +19,39 @@ namespace game
             if (!entityManager_.HasComponent(playerEntity,
                 static_cast<core::EntityMask>(ComponentType::PLAYER_CHARACTER)))
                 continue;
-            auto playerBody = physicsManager_.GetBody(playerEntity);
+            auto playerBody = physicsManager_.GetBody(playerEntity); //TODO
             auto playerCharacter = GetComponent(playerEntity);
             const auto input = playerCharacter.input;
 
             const bool right = input & PlayerInputEnum::PlayerInput::RIGHT;
             const bool left = input & PlayerInputEnum::PlayerInput::LEFT;
             const bool jump = input & PlayerInputEnum::PlayerInput::JUMP;
+             
 
             auto dir = core::Vec2f::up();
             auto dir_r = core::Vec2f::right();
-            if (jump)
+
+            if (jump && playerBody.position.y <= 0)  /*&& playerBody.availableJump > 0 && dt.asSeconds() >= playerBody.previousJumpTime + jumpCooldown)*/
             {
                 playerBody.velocity = { playerBody.velocity.x ,0 };
+                playerBody.velocity.y += 10.0f;
+                //playerCharacter.jump_acceleration = (jump ? 10.0f : 0.0f) * dir;
+                //playerBody.previousJumpTime = dt.asSeconds();
+              /*  playerBody.availableJump--;*/
             }
-            const auto acceleration =  (jump ? 5.0f : 0.0f) * dir;
-            const auto jump_acceleration = ((right ? 0.0f : -3.5f) + (left ? 0.0f : 3.5f)) * dir_r;
-            playerBody.velocity += acceleration + jump_acceleration * dt.asSeconds();
-            if (playerBody.velocity.x <= -2)
+            const auto acceleration= ((right ? 0.0f : -3.5f) + (left ? 0.0f : 3.5f)) * dir_r;
+            playerBody.velocity += acceleration * dt.asSeconds(); //jump acceleration ne change pas
+            if (playerBody.velocity.x <= -maxPlayerSpeed)
             {
-                playerBody.velocity.x = -2;
+                playerBody.velocity.x = -maxPlayerSpeed;
             }
-            if (playerBody.velocity.x >= 2)
+            if (playerBody.velocity.x >= maxPlayerSpeed)
             {
-                playerBody.velocity.x = 2;
+                playerBody.velocity.x = maxPlayerSpeed;
             }
 
             physicsManager_.SetBody(playerEntity, playerBody);
-            SetComponent(playerEntity, playerCharacter);
+            ComponentManager::SetComponent(playerEntity, playerCharacter);
         }
     }
 }

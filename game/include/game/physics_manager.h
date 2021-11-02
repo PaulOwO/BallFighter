@@ -21,6 +21,8 @@ namespace game
         core::Vec2f velocity = core::Vec2f::zero();
         BodyType bodyType = BodyType::DYNAMIC;
         static float CalculateDistance(Body body1, Body body2);
+      /*  short availableJump = jumpNumber;
+        float previousJumpTime = 0;*/
     };
 
     struct Box

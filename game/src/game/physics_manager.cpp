@@ -2,6 +2,8 @@
 #include <fmt/format.h>
 #include <utils/log.h>
 #include <cmath>
+#include <game/game_manager.h>
+#include <game/player_character.h>
 
 
 
@@ -40,7 +42,7 @@ namespace game
             if (body.position.x <= min_pos.x + core::radius)
             {
                 body.position.x = min_pos.x + core::radius;
-                body.velocity.x = 15;
+                body.velocity.x = -body.velocity.x * 2;
             }
             if (body.position.y <= min_pos.y + core::radius)            //correct position and velocity
             {
@@ -50,7 +52,7 @@ namespace game
             if (body.position.x >= max_pos.x - core::radius)
             {
                 body.position.x = max_pos.x - core::radius;
-                body.velocity.x = -15;
+                body.velocity.x = -body.velocity.x * 2;
             }
             if (body.position.y >= max_pos.y - core::radius)
             {
@@ -182,6 +184,9 @@ namespace game
 			{
 				core::LogWarning(fmt::format("p2 death!"));
                 //const auto& playerManager = rollbackManager_.GetPlayerCharacterManager();
+                //rollback manager.cpp
+                //ClientGameManager::WinGame(0);
+               
 
 			}
             if (body1.position.y >= body2.position.y + 1.5 * core::radius)
