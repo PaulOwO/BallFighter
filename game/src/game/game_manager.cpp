@@ -168,7 +168,7 @@ namespace game
                 textRenderer_.setCharacterSize(32);
                 const auto textBounds = textRenderer_.getLocalBounds();
                 textRenderer_.setPosition(windowSize_.x / 2.0f - textBounds.width/2.0f, 
-                    windowSize_.y / 2.0f - textBounds.height / 2.0f);
+                    windowSize_.y / 2.0f - textBounds.height / 2.0f + 40);
                 target.draw(textRenderer_);
             }
             else if (winner_ != INVALID_PLAYER)
@@ -179,7 +179,7 @@ namespace game
                 textRenderer_.setCharacterSize(32);
                 const auto textBounds = textRenderer_.getLocalBounds();
                 textRenderer_.setPosition(windowSize_.x / 2.0f - textBounds.width / 2.0f,
-                    windowSize_.y / 2.0f - textBounds.height / 2.0f);
+                    windowSize_.y / 2.0f - textBounds.height / 2.0f + 40);
                 target.draw(textRenderer_);
             }
             else
@@ -190,7 +190,7 @@ namespace game
                 textRenderer_.setCharacterSize(32);
                 const auto textBounds = textRenderer_.getLocalBounds();
                 textRenderer_.setPosition(windowSize_.x / 2.0f - textBounds.width / 2.0f,
-                    windowSize_.y / 2.0f - textBounds.height / 2.0f);
+                    windowSize_.y / 2.0f - textBounds.height / 2.0f + 40);
                 target.draw(textRenderer_);
             }
         }
@@ -228,7 +228,23 @@ namespace game
                 }
                 health += fmt::format("P{} health: {} ", playerNumber + 1, playerManager.GetComponent(playerEntity).health);
             }
-            
+
+            greenLine_.setSize(sf::Vector2f(10000.0f, 10.0f));
+            greenLine_.setPosition(-core::radius, 500);
+            greenLine_.setFillColor(sf::Color::Green);
+            target.draw(greenLine_);
+
+          
+            /*leftWall_.setSize(sf::Vector2f(10.0f, 1000.0f));
+            leftWall_.setPosition(-1, 0);
+            leftWall_.setFillColor(sf::Color::White);
+            target.draw(leftWall_);
+
+            rightWall_.setSize(sf::Vector2f(10.0f, 1000.0f));
+            rightWall_.setPosition(999, 0);
+            rightWall_.setFillColor(sf::Color::White);
+            target.draw(rightWall_);*/
+
             textRenderer_.setFillColor(sf::Color::White);
             textRenderer_.setString(health);
             textRenderer_.setPosition(10, 10);

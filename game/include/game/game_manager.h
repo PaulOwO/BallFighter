@@ -5,6 +5,7 @@
 #include <SFML/System/Time.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
 #include "game_globals.h"
 #include "rollback_manager.h"
@@ -95,7 +96,9 @@ namespace game
         sf::Texture playerTexture_;
         
         sf::Font font_;
-
+        sf::RectangleShape greenLine_;
+        sf::RectangleShape leftWall_;
+        sf::RectangleShape rightWall_;
         sf::Text textRenderer_;
     };
 }
