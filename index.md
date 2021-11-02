@@ -35,41 +35,8 @@ I finished the collision without to much trouble and was left was the win condit
 
 This code is called only when there is a collision and based on the radius of the circle we can determine if the contact was on the upper part of the circle only with their y axis position to know the looser.
 
-When coding was over I checed and deleted things I didn't use and tried to clean up my code.
+When the game was over I cheked and deleted things I didn't use and tried to clean up my code.
 
+# Conclusion 
 
-You can use the [editor on GitHub](https://github.com/PaulOwO/BallFighter/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/PaulOwO/BallFighter/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+We had already made a game around an algorythm we needed to undertand but never a game using an entire codebase that we had to understand which was interesting, rewarding but sometimes frustrating.
