@@ -33,10 +33,10 @@ I finished the collision without to much trouble and was left with the winning c
 
 ![image](https://user-images.githubusercontent.com/71375990/139920792-6973b4aa-201a-4a67-9b3f-c6f0249647d6.png)
 
-This code is called only when there is a collision between and based on the radius of the circle we can determine if the contact was on the upper part of the circle only with their y axis position to know the looser.
+This code is called only when there is a collision between the two balls. Based on the radius of the circle one can determine if the contact was on the upper part of one of the balls using their y axis positions. This way we can determine if one of the ball is killed and know who is the looser.
 
-When the game was over I checked and deleted things I didn't use and tried to clean up my code.
+When much of the code was written, I checked and deleted things I didn't use and tried to clean up my code.
 
 # Conclusion 
 
-We had already made a game around an algorythm we needed to undertand but never a game using an entire codebase that we had to understand which was interesting, rewarding but sometimes frustrating.
+We had already made a game around an algorythm we needed to undertand, but never a game using an entire codebase that we had to understand. It was very interesting, rewarding but sometimes frustrating.
