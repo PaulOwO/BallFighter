@@ -10,8 +10,10 @@ The game is a C++ online multiplayer fighting game that work on a server-client 
 
 # The Game 
 
+![image](https://user-images.githubusercontent.com/71375990/139921752-85673601-50da-478f-9cf4-3951279d3f2c.png)
+
 You incarnate a red or blue ball with a 2d side view, your goal is simple, jump on the upper part of the other player to kill him.
-For that your possible action are moving right, left and jumping. you have 3 jump available until you touch the ground again.
+For that your possible action are moving right, left and jumping. You cannot jump in the upper part of the screen so that you are always killable.
 You and your enemy are stuck in a square arena, and be carful the roof and wall will give you an impulsion to try to surpise your enemy.
 
 # Developpement
@@ -31,7 +33,7 @@ I finished the collision without to much trouble and was left was the win condit
 
 ![image](https://user-images.githubusercontent.com/71375990/139920792-6973b4aa-201a-4a67-9b3f-c6f0249647d6.png)
 
-This code is called only when there is a collision and based on the radius of the circle we can determine if the contact was on the upper part of the circle only with their y axis position.
+This code is called only when there is a collision and based on the radius of the circle we can determine if the contact was on the upper part of the circle only with their y axis position to know the looser.
 
 When coding was over I checed and deleted things I didn't use and tried to clean up my code.
 
