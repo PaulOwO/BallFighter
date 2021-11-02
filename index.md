@@ -20,9 +20,19 @@ Like I said before we started with a huge codebase, this codebase was a sort of 
 The firts step was to understand this code and plan what I was going to do during the next 3 weeks to advance at a regular pace.
 It was the first time that we did that so I learned a lot about how to spend time planning to acually save time programming. Going step by step was also neascesary not to get lost. 
 The first step of my plan was to delete all that i didn't need in the code like bullet and shooting for exemple, this step took way longer that I thought it would because of the fact that everyting in the code was linked. 
-My next step was making the game physical engine and player movement, we had already done a physical engine in the last formative last year but it wasn't that easy because I I had to implement it using the already existing code so that the roolback would still work. The client-server relation being already there all we had to do is understand it and being able to use it like we wanted, for the player movement. I forgot my second law of Newton and didn't get my gravity right until some help. I also had a lot of trouble for the view of my game, between the meter, pixels, resize and split screen.
+My next step was making the game physical engine and player movement, we had already done a physical engine in the last formative last year but it wasn't that easy because I I had to implement it using the already existing code so that the roolback would still work. The client-server relation being already there all we had to do is understand it and being able to use it like we wanted, for the player movement. I forgot my second law of Newton and didn't get my gravity right until some help.
+
+![image](https://user-images.githubusercontent.com/71375990/139919762-0d67d474-8680-444e-8f02-bf649c50c917.png))
+
+Here we can see how I set the player velocity and movement using the delta time, we can also see how I delimited the game space using the window size(1000) the radius of the 2 players and the pixel to meter that I had some problem with and my game view overall.
+
 The teacher being away for some time made us also predict where we were going to need help and made us do the best of limited help time.
 I finished the collision without to much trouble and was left was the win condition.
+
+![image](https://user-images.githubusercontent.com/71375990/139920792-6973b4aa-201a-4a67-9b3f-c6f0249647d6.png)
+
+This code is called only when there is a collision and based on the radius of the circle we can determine if the contact was on the upper part of the circle only with their y axis position.
+
 When coding was over I checed and deleted things I didn't use and tried to clean up my code.
 
 
