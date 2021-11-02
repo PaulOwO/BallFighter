@@ -66,6 +66,7 @@ namespace game
             //Simulate one frame of the game
             currentPlayerManager_.FixedUpdate(sf::seconds(GameManager::FixedPeriod));
             currentPhysicsManager_.FixedUpdate(sf::seconds(GameManager::FixedPeriod));
+            TakeDamage();
         }
         //Copy the physics states to the transforms
         for (core::Entity entity = 0; entity < entityManager_.GetEntitiesSize(); entity++)
@@ -177,6 +178,7 @@ namespace game
             //We simulate one frame
             currentPlayerManager_.FixedUpdate(sf::seconds(GameManager::FixedPeriod));
             currentPhysicsManager_.FixedUpdate(sf::seconds(GameManager::FixedPeriod));
+            TakeDamage();
         }
         //Definitely remove DESTROY entities
         for (core::Entity entity = 0; entity < entityManager_.GetEntitiesSize(); entity++)
@@ -282,5 +284,25 @@ namespace game
             return;
         }
         entityManager_.AddComponent(entity, static_cast<core::EntityMask>(ComponentType::DESTROYED));
+    }
+    void RollbackManager::TakeDamage()
+    {
+        for (core::Entity entity = 0; entity < entityManager_.GetEntitiesSize(); entity++)
+        {
+            if (entityManager_.HasComponent(entity, static_cast<core::EntityMask>(ComponentType::PLAYER_CHARACTER)))
+            {
+                const auto& playerBody = currentPhysicsManager_.GetBody(entity);
+                auto playerCharacter = currentPlayerManager_.GetComponent(entity);
+                if (playerBody.looser)
+                {
+                    playerCharacter.health--;
+                    if (playerCharacter.health < 0)
+                    {
+                        playerCharacter.health = 0;
+                    }
+                }
+                currentPlayerManager_.SetComponent(entity, playerCharacter);
+            }
+        }
     }
 }

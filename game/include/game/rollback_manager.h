@@ -34,6 +34,12 @@ class GameManager;
         void ValidateFrame(Frame newValidateFrame);
         /**
          * \brief Confirm Frame and Check with Physics State checksum, called by the clients when receiving Confirm Frame packet
+        [[nodiscard]] Frame GetCurrentFrame() const { return currentFrame_; }
+        [[nodiscard]] const core::TransformManager& GetTransformManager() const { return currentTransformManager_; }
+    	[[nodiscard]] const PlayerCharacterManager& GetPlayerCharacterManager() const { return currentPlayerManager_; }
+        void SpawnPlayer(PlayerNumber playerNumber, core::Entity entity, core::Vec2f position);
+        /**
+         * \brief This function does not destroy the entity definitely, but puts the DESTROY flag
          */
         void ConfirmFrame(Frame newValidatedFrame, const std::array<PhysicsState, maxPlayerNmb>& serverPhysicsState);
         [[nodiscard]] PhysicsState GetValidatePhysicsState(PlayerNumber playerNumber) const;
@@ -47,6 +53,9 @@ class GameManager;
          * \brief This function does not destroy the entity definitely, but puts the DESTROY flag
          */
         void DestroyEntity(core::Entity entity);
+
+        void TakeDamage();
+
     private:
         PlayerInput GetInputAtFrame(PlayerNumber playerNumber, Frame frame);
         GameManager& gameManager_;

@@ -228,6 +228,7 @@ namespace game
                 }
                 health += fmt::format("P{} health: {} ", playerNumber + 1, playerManager.GetComponent(playerEntity).health);
             }
+            
             textRenderer_.setFillColor(sf::Color::White);
             textRenderer_.setString(health);
             textRenderer_.setPosition(10, 10);

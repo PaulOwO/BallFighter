@@ -182,16 +182,13 @@ namespace game
 
 			if (body2.position.y >= body1.position.y + 1.5 * core::radius)
 			{
-				core::LogWarning(fmt::format("p2 death!"));
-                //const auto& playerManager = rollbackManager_.GetPlayerCharacterManager();
-                //rollback manager.cpp
-                //ClientGameManager::WinGame(0);
-               
-
+				core::LogWarning(fmt::format("p1 death!"));
+                body1.looser = true;
 			}
             if (body1.position.y >= body2.position.y + 1.5 * core::radius)
             {
-                core::LogWarning(fmt::format("p1 death!"));
+                core::LogWarning(fmt::format("p2 death!"));
+                body2.looser = true;
             }
 
         body1.position = RelocateCenter(body1, ContactPoint(body1, body2));
