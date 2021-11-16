@@ -97,8 +97,8 @@ namespace game
         
         sf::Font font_;
         sf::RectangleShape greenLine_;
-        sf::RectangleShape leftWall_;
-        sf::RectangleShape rightWall_;
+       /* sf::RectangleShape leftWall_;
+        sf::RectangleShape rightWall_;*/
         sf::Text textRenderer_;
     };
 }
