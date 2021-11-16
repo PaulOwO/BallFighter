@@ -31,15 +31,10 @@ namespace game
             constexpr  auto dir = core::Vec2f::up();
             constexpr  auto dir_r = core::Vec2f::right();
 
-            if (jump && playerBody.position.y <= 0)  /*&& playerBody.availableJump > 0 && dt.asSeconds() >= playerBody.previousJumpTime + jumpCooldown)*/
+            if (jump && playerBody.position.y <= 0) 
             {
                 playerBody.velocity = { playerBody.velocity.x ,0 };
                 playerBody.velocity.y += 10.0f;
-
-
-                //playerCharacter.jump_acceleration = (jump ? 10.0f : 0.0f) * dir;
-                //playerBody.previousJumpTime = dt.asSeconds();
-              /*  playerBody.availableJump--;*/
 
             }
             const auto acceleration= ((right ? 0.0f : -3.5f) + (left ? 0.0f : 3.5f)) * dir_r;
