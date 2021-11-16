@@ -153,6 +153,23 @@ namespace game
     	UpdateCameraView();
         target.setView(cameraView_);
 
+        //core::Vec2f max_pos = { (areaSize.x / core::pixelPerMeter / 2), (areaSize.y / core::pixelPerMeter / 2) };
+        //core::Vec2f min_pos = { -(areaSize.x / core::pixelPerMeter / 2), -(areaSize.y / core::pixelPerMeter / 2) };
+
+        greenLine_.setSize(sf::Vector2f(10000.0f, 10.0f));
+        greenLine_.setPosition(-core::radius, 500);
+        greenLine_.setFillColor(sf::Color::Green);
+        target.draw(greenLine_);
+
+        /*leftWall_.setSize(sf::Vector2f(10.0f, 1000.0f));
+        leftWall_.setPosition( 0, 0);
+        leftWall_.setFillColor(sf::Color::White);
+        target.draw(leftWall_);*/
+
+       /* rightWall_.setSize(sf::Vector2f(10.0f, 1000.0f));
+        rightWall_.setPosition( max_pos.x, 0);
+        rightWall_.setFillColor(sf::Color::White);
+        target.draw(rightWall_);*/
 
         spriteManager_.Draw(target);
 
@@ -228,22 +245,6 @@ namespace game
                 }
                 health += fmt::format("P{} health: {} ", playerNumber + 1, playerManager.GetComponent(playerEntity).health);
             }
-
-            greenLine_.setSize(sf::Vector2f(10000.0f, 10.0f));
-            greenLine_.setPosition(-core::radius, 500);
-            greenLine_.setFillColor(sf::Color::Green);
-            target.draw(greenLine_);
-
-          
-            /*leftWall_.setSize(sf::Vector2f(10.0f, 1000.0f));
-            leftWall_.setPosition(-1, 0);
-            leftWall_.setFillColor(sf::Color::White);
-            target.draw(leftWall_);
-
-            rightWall_.setSize(sf::Vector2f(10.0f, 1000.0f));
-            rightWall_.setPosition(999, 0);
-            rightWall_.setFillColor(sf::Color::White);
-            target.draw(rightWall_);*/
 
             textRenderer_.setFillColor(sf::Color::White);
             textRenderer_.setString(health);

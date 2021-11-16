@@ -32,9 +32,8 @@ namespace game
                 continue;
             auto body = bodyManager_.GetComponent(entity);
             core::Vec2f G = { 0, -9.81 };
-            core::Vec2f max_pos = { (core::windowSize.x / core::pixelPerMeter /2), (core::windowSize.y / core::pixelPerMeter / 2)};
-            //core::Vec2f min_pos = core::Vec2f::zero();
-            core::Vec2f min_pos = { -(core::windowSize.x / core::pixelPerMeter / 2), -(core::windowSize.y / core::pixelPerMeter / 2)};
+            core::Vec2f max_pos = { (areaSize.x / core::pixelPerMeter /2), (areaSize.y / core::pixelPerMeter / 2)};
+            core::Vec2f min_pos = { -(areaSize.x / core::pixelPerMeter / 2), -(areaSize.y / core::pixelPerMeter / 2)};
 
             body.velocity += G * dt.asSeconds();
             body.position += body.velocity * dt.asSeconds();
@@ -151,7 +150,7 @@ namespace game
         return (body2.position - body1.position) * ratio + body1.position;
     }
 
-    core::Vec2f PhysicsManager::RelocateCenter(const Body& body, const core::Vec2f& v)
+     core::Vec2f PhysicsManager::RelocateCenter(const Body& body, const core::Vec2f& v)
     {
         double ratio = (core::radius) / (body.position - v).Length();
         return (body.position - v) * ratio + v;

@@ -15,11 +15,13 @@ namespace game
     using ClientId = std::uint16_t;
     using Frame = std::uint32_t;
 
-    const std::uint32_t maxPlayerNmb = 2;
-    const short playerHealth = 1;
-    const float maxPlayerSpeed = 5.0f;
-    const float jumpCooldown = 0.01f;
-    const int jumpNumber = 3;
+    constexpr std::uint32_t maxPlayerNmb = 2;
+    constexpr short playerHealth = 1;
+    constexpr float maxPlayerSpeed = 5.0f;
+    constexpr float jumpCooldown = 0.01f;
+    constexpr int jumpNumber = 3;
+
+    constexpr  core::Vec2f areaSize{ 1000,1000 }; //in pixels
 
     const std::array<sf::Color, std::max(maxPlayerNmb, 4u)> playerColors =
     {
